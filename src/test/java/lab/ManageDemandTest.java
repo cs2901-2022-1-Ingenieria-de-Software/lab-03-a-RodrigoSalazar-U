@@ -50,6 +50,13 @@ public class ManageDemandTest {
         double result = demand.calculateTotal(ordersMixed);
         Assert.assertEquals(Math.round(result), 14.0);
     }
+
+    public void test_EmptyOrders() {
+        List<Order> ordersEmpty = new ArrayList<>();
+        double result = demand.calculateTotal(ordersEmpty);
+        Assert.assertEquals(Math.round(result), 0.0);
+    }
+
     public void test_AllOrdersFromPeruAdditional() {
         List<Order> ordersFromPeru = TestUtil.buildOrdersPeru();
         double result = demand.calculateTotalForWithAdditionalByCountry(ordersFromPeru, additional);
@@ -66,6 +73,12 @@ public class ManageDemandTest {
         ordersMixed.addAll(TestUtil.buildOrdersColombia());
         double result = demand.calculateTotalForWithAdditionalByCountry(ordersMixed, additional);
         Assert.assertEquals(Math.round(result), 24.0);
+    }
+
+    public void test_EmptyOrdersAdditional() {
+        List<Order> ordersEmpty = new ArrayList<>();
+        double result = demand.calculateTotalForWithAdditionalByCountry(ordersEmpty, additional);
+        Assert.assertEquals(Math.round(result), 0.0);
     }
 
 }
