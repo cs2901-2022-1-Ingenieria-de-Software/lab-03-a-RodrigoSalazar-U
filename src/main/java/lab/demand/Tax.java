@@ -7,6 +7,7 @@ public class Tax {
     private Map<String, Double> taxByCountry = new HashMap<>();
 
     public void setDefault(){
+        taxByCountry = new HashMap<>();
         this.setTax("PE",0.18);
         this.setTax("BR",0.12);
         this.setTax("CO",0.0);
