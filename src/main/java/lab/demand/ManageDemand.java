@@ -11,45 +11,33 @@ public class ManageDemand {
     }
 
     public double calculateTotal(List<Order> orders){
-        // Calculate Taxes
+        double taxes = calculateTaxes(orders, this.tax);
+        double quantities = calculateQuantities(orders);
+        return quantities * taxes;
+    }
+
+    public double calculateTotalForWithAdditionalByCountry(List<Order> orders, Tax additionalByCountry){
+        double taxes = calculateTaxes(orders, additionalByCountry);
+        double quantities = calculateQuantities(orders);
+        return quantities * taxes;
+    }
+
+
+    private double calculateTaxes(List<Order> orders, Tax taxByCountry){
         double taxes = 0.0;
         for (Order order : orders) {
-            double tax = this.tax.calculateTax(order.getCountry());
-            taxes += tax;
+            taxes += taxByCountry.calculateTax(order.getCountry());
         }
+        return taxes;
+    }
 
-        // Calculate Total
+    private double calculateQuantities(List<Order> orders){
+
         double quantities = 0.0;
         for (Order order : orders) {
             double temp = order.getQuantity();
             quantities += temp;
         }
-
-        return quantities * taxes;
+        return quantities;
     }
-
-    public double calculateTotalForWithAdditionalByCountry(List<Order> orders, double defaultAdditionalColombia, double defaultAdditionalPeru, double defaultAdditionalBrazil){
-        // Calculate additionals by country
-        double taxes = 0.0;
-        for (Order order : orders) {
-            String currCountry = order.getCountry();
-            if (currCountry.equals("PE")) {
-                taxes += defaultAdditionalPeru;
-            } else if (currCountry.equals("BR")) {
-                taxes += defaultAdditionalBrazil;
-            } else {
-                taxes += defaultAdditionalColombia;
-            }
-        }
-
-        // Calculate Total
-        double quantities = 0.0;
-        for (Order order : orders) {
-            double temp = order.getQuantity();
-            quantities += temp;
-        }
-
-        return quantities * taxes;
-    }
-
 }
