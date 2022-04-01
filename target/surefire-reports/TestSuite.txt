@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.457 sec <<< FAILURE!
+test_AllOrdersFromColombia(lab.ManageDemandTest)  Time elapsed: 0.005 sec  <<< FAILURE!
+java.lang.AssertionError: did not expect to find [7.0] but found [0.0]
+	at org.testng.Assert.fail(Assert.java:97)
+	at org.testng.Assert.failNotEquals(Assert.java:969)
+	at org.testng.Assert.assertEquals(Assert.java:640)
+	at org.testng.Assert.assertEquals(Assert.java:651)
+	at lab.ManageDemandTest.test_AllOrdersFromColombia(ManageDemandTest.java:36)
+
